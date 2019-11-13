@@ -30,6 +30,7 @@ node {
          -Dsonar.organization=octaviodimarco \
          -Dsonar.host.url=https://sonarcloud.io \
          -Dsonar.login=ad056e5a32040b87e2b0891cbc0411672ab6af11
+         -Dmaven.test.failure.ignore=true
       }
 
 }
