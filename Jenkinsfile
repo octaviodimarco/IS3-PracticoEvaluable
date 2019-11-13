@@ -20,7 +20,7 @@ node {
       archiveArtifacts 'payroll/server/target/*.jar'
    }
    stage 'SonarCloud'
-// Split https://github.com/organization/repository/pull/123
+   Split https://github.com/octaviodimarco/IS3-PracticoEvaluable
       def urlcomponents = env.CHANGE_URL.split("/")
       def org = urlcomponents[3]
       def repo = urlcomponents[4]
