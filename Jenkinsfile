@@ -30,7 +30,7 @@ node {
    }
 
    stage('Unit Tests'){
-      junit '**/surefire-reports/*.xml'
+      junit 'payroll/server/target/surefire-reports/*.xml'
 
    }
    stage('Results') {
