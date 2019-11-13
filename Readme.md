@@ -1,3 +1,3 @@
-[![Build status](https://ci.appveyor.com/api/projects/status/qi06cvw4ir1ft49k?svg=true)](https://ci.appveyor.com/project/octaviodimarco/is3-practicoevaluable)
+[![Build Status](http://localhost:8081/buildStatus/icon?job=PracticoEvaluableBuild)](http://localhost:8081/job/PracticoEvaluableBuild/)
 
 #probando2
