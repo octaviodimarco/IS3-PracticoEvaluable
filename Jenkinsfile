@@ -19,15 +19,12 @@ node {
    stage('Results') {
       archiveArtifacts 'payroll/server/target/*.jar'
    }
-   stage 'SonarCloud'
-   //Split https://github.com/octaviodimarco/IS3-PracticoEvaluable
-      
+   stage ('SonarCloud') {
          mvn verify sonar:sonar \
          -Dsonar.projectKey=octaviodimarco_IS3-PracticoEvaluable \
          -Dsonar.organization=octaviodimarco \
          -Dsonar.host.url=https://sonarcloud.io \
          -Dsonar.login=ad056e5a32040b87e2b0891cbc0411672ab6af11
-         -Dmaven.test.failure.ignore=true
-      
+      }
 
 }
