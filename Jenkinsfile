@@ -19,7 +19,13 @@ node {
    stage('Results') {
       archiveArtifacts 'payroll/server/target/*.jar'
    }
-   stage ('SonarCloud') {
+
+   stage 'SonarCloud'
+// Split https://github.com/organization/repository/pull/123
+def urlcomponents = env.CHANGE_URL.split("/")
+def org = urlcomponents[3]
+def repo = urlcomponents[4]
+withSonarQubeEnv('SonarCloud') {
          mvn verify sonar:sonar \
          -Dsonar.projectKey=octaviodimarco_IS3-PracticoEvaluable \
          -Dsonar.organization=octaviodimarco \
