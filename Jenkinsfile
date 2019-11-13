@@ -26,7 +26,7 @@ def urlcomponents = env.CHANGE_URL.split("/")
 def org = urlcomponents[3]
 def repo = urlcomponents[4]
 withSonarQubeEnv('SonarCloud') {
-         mvn verify sonar:sonar \
+         mvn sonar:sonar \
          -Dsonar.projectKey=octaviodimarco_IS3-PracticoEvaluable \
          -Dsonar.organization=octaviodimarco \
          -Dsonar.host.url=https://sonarcloud.io \
