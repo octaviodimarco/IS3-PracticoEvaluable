@@ -20,7 +20,7 @@ node {
 
    stage ('SonarCloud'){
       withEnv(["MVN_HOME=$mvnHome"]) {
-      sh 'cd payroll/server/ && "$MVN_HOME/bin/mvn" verify sonar:sonar \
+      sh 'cd payroll/server && "$MVN_HOME/bin/mvn" verify sonar:sonar \
          -Dsonar.projectKey=octaviodimarco_IS3-PracticoEvaluable \
          -Dsonar.organization=octaviodimarco \
          -Dsonar.host.url=https://sonarcloud.io \
