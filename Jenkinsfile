@@ -29,6 +29,10 @@ node {
       }
    }
 
+   stage('Unit Tests'){
+      junit '**/surefire-reports/*.xml'
+
+   }
    stage('Results') {
       archiveArtifacts 'payroll/server/target/*.jar'
    }
