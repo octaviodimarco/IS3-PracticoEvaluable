@@ -16,22 +16,21 @@ node {
             
       }
    }
-   stage('Results') {
-      archiveArtifacts 'payroll/server/target/*.jar'
-   }
 
-   stage 'SonarCloud'
-// Split https://github.com/organization/repository/pull/123
-def urlcomponents = env.CHANGE_URL.split("/")
-def org = urlcomponents[3]
-def repo = urlcomponents[4]
-withSonarQubeEnv('SonarCloud') {
-         mvn sonar:sonar \
+
+   stage ('SonarCloud'){
+      dir('payroll/server/'){
+         sh label: '', script: 'mvn verify sonar:sonar \
          -Dsonar.projectKey=octaviodimarco_IS3-PracticoEvaluable \
          -Dsonar.organization=octaviodimarco \
          -Dsonar.host.url=https://sonarcloud.io \
          -Dsonar.login=ad056e5a32040b87e2b0891cbc0411672ab6af11 \
-         -Dmaven.test.failure.ignore=true
+         -Dmaven.test.failure.ignore=true'
       }
+   }
+
+   stage('Results') {
+      archiveArtifacts 'payroll/server/target/*.jar'
+   }
 
 }
