@@ -1,5 +1,6 @@
 node {
    def mvnHome
+   def app
    stage('Preparation') { // for display purposes
       // Get some code from a GitHub repository
       git 'https://github.com/octaviodimarco/IS3-PracticoEvaluable.git'
@@ -13,7 +14,7 @@ node {
       withEnv(["MVN_HOME=$mvnHome"]) {
       
             sh 'cd payroll/server && "$MVN_HOME/bin/mvn" -Dmaven.test.failure.ignore clean package'
-            
+            app = docker.build("test-java")
       }
    }
 
