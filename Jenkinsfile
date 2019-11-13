@@ -12,7 +12,9 @@ node {
       // Run the maven build
       withEnv(["MVN_HOME=$mvnHome"]) {
       
-            sh 'cd payroll/server && "$MVN_HOME/bin/mvn" -Dmaven.test.failure.ignore clean package'
+            sh 'cd payroll/server && 
+            "$MVN_HOME/bin/mvn" -Dmaven.test.failure.ignore clean package
+            && docker.build("octaviodimarco/pipeline")'
       }
    }
 
@@ -31,6 +33,14 @@ node {
    stage('Results') {
       archiveArtifacts 'payroll/server/target/*.jar'
       junit '**/target/surefire-reports/TEST-*.xml'
+
+   }
+
+   stage('Push Image'){
+      withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'password', usernameVariable: 'user')]){
+         sh "docker login -u ${user} -p ${password}"
+            sh label: '', script: 'docker push octaviodimarco/pipeline'
+      }
 
    }
 
