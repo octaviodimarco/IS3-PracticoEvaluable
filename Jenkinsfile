@@ -19,8 +19,8 @@ node {
 
 
    stage ('SonarCloud'){
-      dir('payroll/server/'){
-         sh label: '', script: 'mvn verify sonar:sonar \
+      withEnv(["MVN_HOME=$mvnHome"]) {
+      sh 'cd payroll/server/ && mvn verify sonar:sonar \
          -Dsonar.projectKey=octaviodimarco_IS3-PracticoEvaluable \
          -Dsonar.organization=octaviodimarco \
          -Dsonar.host.url=https://sonarcloud.io \
