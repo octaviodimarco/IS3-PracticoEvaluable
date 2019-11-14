@@ -40,9 +40,7 @@ stage('Build') {
      heroku container:release web --app=salty-brook-03114
 
 	 }
-   }
    
-
       stage('Results') {
       archiveArtifacts 'payroll/server/target/*.jar'
       junit '**/target/surefire-reports/TEST-*.xml'
