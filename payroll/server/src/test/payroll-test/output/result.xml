@@ -1,11 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="Mocha Tests" time="1.5390000000000001" tests="2" failures="0">
-  <testsuite name="Root Suite" timestamp="2019-11-14T15:57:39" tests="0" failures="0" time="0">
+<testsuites name="Mocha Tests" time="20.076" tests="2" failures="2">
+  <testsuite name="Root Suite" timestamp="2019-11-14T16:49:30" tests="0" failures="0" time="0">
   </testsuite>
-  <testsuite name="Payroll" timestamp="2019-11-14T15:57:39" tests="2" file="/Users/octaviodimarco/Documents/Facultad/4to/Ingenieria_de_Software_III/IS3-PracticoEvaluable/payroll/server/src/test/payroll-test/github_test.js" failures="0" time="1.5390000000000001">
-    <testcase name="Payroll: Verificar a successful call" time="1.098" classname="Verificar a successful call">
+  <testsuite name="Payroll" timestamp="2019-11-14T16:49:30" tests="2" file="/Users/octaviodimarco/Documents/Facultad/4to/Ingenieria_de_Software_III/IS3-PracticoEvaluable/payroll/server/src/test/payroll-test/github_test.js" failures="2" time="20.076">
+    <testcase name="Payroll: Verificar a successful call" time="10.07" classname="Verificar a successful call">
+      <failure message="timeout of 10000ms exceeded" type="Error"><![CDATA[timeout of 10000ms exceeded
+
+Scenario Steps:
+
+- I.sendGetRequest("/employees") at Test.Scenario (github_test.js:7:22)
+
+]]></failure>
     </testcase>
-    <testcase name="Payroll: Verificar empleado 1" time="0.441" classname="Verificar empleado 1">
+    <testcase name="Payroll: Verificar empleado 1" time="10.006" classname="Verificar empleado 1">
+      <failure message="timeout of 10000ms exceeded" type="Error"><![CDATA[timeout of 10000ms exceeded
+
+Scenario Steps:
+
+- I.sendGetRequest("/employees/1") at Test.Scenario (github_test.js:12:22)
+
+]]></failure>
     </testcase>
   </testsuite>
 </testsuites>
