@@ -4,7 +4,7 @@ RUN apk add --no-cache bash
 
 WORKDIR /opt
 
-COPY  target/links-0.0.1-SNAPSHOT.jar .
+COPY  payroll/server/target/links-0.0.1-SNAPSHOT.jar .
 
 ENV PORT=8080
 
