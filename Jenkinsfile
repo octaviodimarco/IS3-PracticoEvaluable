@@ -47,40 +47,9 @@ stage('Build') {
       // }
    
 
-def preview() {
-    stage name: 'Deploy to Preview env', concurrency: 1
-    def herokuApp = "${env.HEROKU_PREVIEW}"
-    def id = createDeployment(getBranch(), "preview", "Deploying branch to test")
-    echo "Deployment ID: ${id}"
-    if (id != null) {
-        setDeploymentStatus(id, "pending", "https://${herokuApp}.herokuapp.com/", "Pending deployment to test");
-        herokuDeploy "${herokuApp}"
-        setDeploymentStatus(id, "success", "https://${herokuApp}.herokuapp.com/", "Successfully deployed to test");
-    }
-    mvn 'deploy -DskipTests=true'
-}
-
-def preProduction() {
-    stage name: 'Deploy to Pre-Production', concurrency: 1
-    switchSnapshotBuildToRelease()
-    herokuDeploy "${env.HEROKU_PREPRODUCTION}"
-    buildAndPublishToArtifactory()
-}
-
-def production() {
-    stage name: 'Deploy to Production', concurrency: 1
-    step([$class: 'ArtifactArchiver', artifacts: '**/target/*.jar', fingerprint: true])
-    herokuDeploy "${env.HEROKU_PRODUCTION}"
-    def version = getCurrentHerokuReleaseVersion("${env.HEROKU_PRODUCTION}")
-    def createdAt = getCurrentHerokuReleaseDate("${env.HEROKU_PRODUCTION}", version)
-    echo "Release version: ${version}"
-    createRelease(version, createdAt)
-    promoteInArtifactoryAndDistributeToBinTray()
-}
-
-def herokuDeploy (herokuApp) {
+stage ('heroku') {
     withCredentials([[$class: 'StringBinding', credentialsId: 'HEROKU_API_KEY', variable: 'HEROKU_API_KEY']]) {
-        mvn "heroku:deploy -DskipTests=true -Dmaven.javadoc.skip=true -B -V -D heroku.appName=${herokuApp}"
+        sh 'heroku:deploy -DskipTests=true -Dmaven.javadoc.skip=true -B -V -D heroku.appName=${salty-brook-03114}'
     }
 }
 
