@@ -36,8 +36,8 @@ stage('Build') {
    // }
 
    stage('Push Image Heroku') {
-     heroku container:push web --app=salty-brook-03114
-     heroku container:release web --app=salty-brook-03114
+     sh 'heroku container:push web --app=salty-brook-03114 &&
+     heroku container:release web --app=salty-brook-03114'
 
 	 }
    
