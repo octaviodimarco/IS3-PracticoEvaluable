@@ -47,8 +47,7 @@ stage('Build') {
 
    stage('Integration test'){
       //sh 'npx codeceptjs init'
-      sh 'cd payroll/server/src/test/payroll-test'
-      sh 'npx codeceptjs run --steps --reporter mocha-multi'
+      sh 'cd payroll/server/src/test/payroll-test && npx codeceptjs run --steps --reporter mocha-multi'
       archiveArtifacts 'payroll/server/src/test/payroll-test/output/results.xml'
    }
 
