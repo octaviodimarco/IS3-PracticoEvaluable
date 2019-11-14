@@ -14,7 +14,7 @@ node {
       withEnv(["MVN_HOME=$mvnHome"]) {
       
             sh 'cd payroll/server && "$MVN_HOME/bin/mvn" -Dmaven.test.failure.ignore clean package'
-            customImage = sh 'cd server && docker build -t payroll-santiago .'
+            customImage = sh 'cd server && docker build -t pipeline .'
       }
    }
 
