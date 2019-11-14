@@ -9,15 +9,12 @@ node {
       // **       in the global configuration.           
       mvnHome = tool 'M3'
    }
-   stage('Build') {
-      // Run the maven build
+stage('Build') {
       withEnv(["MVN_HOME=$mvnHome"]) {
-      
-            sh 'cd payroll/server && "$MVN_HOME/bin/mvn" -Dmaven.test.failure.ignore clean package spring-boot:repackage'
-            customImage = sh 'docker build -t pipeline .'
+        sh 'cd payroll/server && "$MVN_HOME/bin/mvn" -Dmaven.test.failure.ignore clean package'
+		docker.build("octaviodimarco/pipeline")
       }
    }
-
 
    // stage ('SonarCloud'){
    //    withEnv(["MVN_HOME=$mvnHome"]) {
