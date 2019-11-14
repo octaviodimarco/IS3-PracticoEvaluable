@@ -45,10 +45,10 @@ stage('Build') {
       }
 	 }
 
-      // stage('Integration test'){
-      //    sh 'npx codeceptjs run --steps --reporter mocha-multi'
-      //    archiveArtifacts 'payroll/server/src/test/payroll-test/output/results.xml'
-      // }
+      stage('Integration test'){
+         sh 'npx codeceptjs run --steps --reporter mocha-multi'
+         archiveArtifacts 'payroll/server/src/test/payroll-test/output/results.xml'
+      }
    
 
 // stage ('heroku') {
