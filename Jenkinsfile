@@ -35,11 +35,16 @@ stage('Build') {
 	//  }
    // }
 
-   stage('Push Image Heroku') {
-     sh 'heroku container:push web --app=salty-brook-03114'
-     sh 'heroku container:release web --app=salty-brook-03114'
+   // stage('Push Image Heroku') {
+   //   sh 'heroku container:push web --app=salty-brook-03114'
+   //   sh 'heroku container:release web --app=salty-brook-03114'
 
-	 }
+	//  }
+
+      stage('Integration test'){
+         sh 'npx codeceptjs run --steps --reporter mocha-multi'
+         archiveArtifacts 'payroll/server/src/test/payroll-test/output/results.xml'
+      }
    
       stage('Results') {
       archiveArtifacts 'payroll/server/target/*.jar'
