@@ -36,10 +36,13 @@ stage('Build') {
    // }
 
    stage('Push Image Heroku') {
-     sh 'docker login --username=octaviodimarco --password=$(6220c6bd-e9ca-4d86-a024-77d74fc8520a) registry.heroku.com'
-     sh 'heroku container:push web --app=salty-brook-03114'
+      withCredentials([usernamePassword(credentialsId: 'herokuCredentials', passwordVariable: 'password',
+      usernameVariable: 'user')]){
+     sh 'docker login --username=_ --password=${password} registry.heroku.com'
+     sh 'docker tag octaviodimarco/pipeline registry.heroku.com/salty-brook-03114/web'
+     sh 'docker push registry.heroku.com/salty-brook-03114/web'
      sh 'heroku container:release web --app=salty-brook-03114'
-
+      }
 	 }
 
       // stage('Integration test'){
