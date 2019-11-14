@@ -35,11 +35,11 @@ stage('Build') {
 	//  }
    // }
 
-   // stage('Push Image Heroku') {
-   //   sh 'heroku container:push web --app=salty-brook-03114'
-   //   sh 'heroku container:release web --app=salty-brook-03114'
+   stage('Push Image Heroku') {
+     sh 'heroku container:push web --app=salty-brook-03114'
+     sh 'heroku container:release web --app=salty-brook-03114'
 
-	//  }
+	 }
 
       // stage('Integration test'){
       //    sh 'npx codeceptjs run --steps --reporter mocha-multi'
@@ -47,11 +47,11 @@ stage('Build') {
       // }
    
 
-stage ('heroku') {
-    withCredentials([[$class: 'StringBinding', credentialsId: 'HEROKU_API_KEY', variable: 'HEROKU_API_KEY']]) {
-        sh 'heroku:deploy -DskipTests=true -Dmaven.javadoc.skip=true -B -V -D heroku.appName=${salty-brook-03114}'
-    }
-}
+// stage ('heroku') {
+//     withCredentials([[$class: 'StringBinding', credentialsId: 'HEROKU_API_KEY', variable: 'HEROKU_API_KEY']]) {
+//         sh 'heroku:deploy -DskipTests=true -Dmaven.javadoc.skip=true -B -V -D heroku.appName=${salty-brook-03114}'
+//     }
+// }
 
 
 
