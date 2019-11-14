@@ -33,12 +33,12 @@ stage('Build') {
 
    }
 
-   stage('Push Image'){
-      withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'password', usernameVariable: 'user')]){
-         sh "docker login -u ${user} -p ${password}"
-            sh label: '', script: 'docker push octaviodimarco/pipeline'
-      }
+   // stage('Push Image'){
+   //    withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'password', usernameVariable: 'user')]){
+   //       sh "docker login -u ${user} -p ${password}"
+   //          sh label: '', script: 'docker push octaviodimarco/pipeline'
+   //    }
 
-   }
+   // }
 
 }
