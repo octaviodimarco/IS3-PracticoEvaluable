@@ -8,7 +8,13 @@ public class EmployeeTest {
 
     @Test
     public void TestBasic() {
-    	Employee alex = new Employee("octavio", "test", "test");
-    	assertEquals(alex.getName(), "octavio test");
+    	Employee octavio = new Employee("octavio", "di marco", "test");
+    	assertEquals(octavio.getName(), "octavio di marco");
+    }
+
+    @Test
+    public void TestRole(){
+        Employee octavio = new Employee("octavio", "di marco", "Full Stack Developer");
+        assertEquals(octavio.getRole(), "Full Stack Developer");
     }
 }

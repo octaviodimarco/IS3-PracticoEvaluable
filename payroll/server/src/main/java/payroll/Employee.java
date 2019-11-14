@@ -32,4 +32,8 @@ class Employee {
 		this.firstName = parts[0];
 		this.lastName = parts[1];
 	}
+
+	public String getRole(String role){
+		return role;
+	}
 }
