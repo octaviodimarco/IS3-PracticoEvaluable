@@ -46,6 +46,7 @@ stage('Build') {
 
    stage('Integration test'){
       sh 'cd payroll/server/src/test/payroll-test && npx codeceptjs run --steps --reporter mocha-multi'
+      sleep 15
    }
 
 
