@@ -1,5 +1,6 @@
 node {
    def mvnHome
+   def customImage
    stage('Preparation') { // for display purposes
       // Get some code from a GitHub repository
       git 'https://github.com/octaviodimarco/IS3-PracticoEvaluable.git'
@@ -13,21 +14,21 @@ node {
       withEnv(["MVN_HOME=$mvnHome"]) {
       
             sh 'cd payroll/server && "$MVN_HOME/bin/mvn" -Dmaven.test.failure.ignore clean package'
-            docker.build("octaviodimarco/pipeline")
+            customImage = sh 'cd server && docker build -t payroll-santiago .'
       }
    }
 
 
-   stage ('SonarCloud'){
-      withEnv(["MVN_HOME=$mvnHome"]) {
-      sh 'cd payroll/server && "$MVN_HOME/bin/mvn" verify sonar:sonar \
-         -Dsonar.projectKey=octaviodimarco_IS3-PracticoEvaluable \
-         -Dsonar.organization=octaviodimarco \
-         -Dsonar.host.url=https://sonarcloud.io \
-         -Dsonar.login=ad056e5a32040b87e2b0891cbc0411672ab6af11 \
-         -Dmaven.test.failure.ignore=true'
-      }
-   }
+   // stage ('SonarCloud'){
+   //    withEnv(["MVN_HOME=$mvnHome"]) {
+   //    sh 'cd payroll/server && "$MVN_HOME/bin/mvn" verify sonar:sonar \
+   //       -Dsonar.projectKey=octaviodimarco_IS3-PracticoEvaluable \
+   //       -Dsonar.organization=octaviodimarco \
+   //       -Dsonar.host.url=https://sonarcloud.io \
+   //       -Dsonar.login=ad056e5a32040b87e2b0891cbc0411672ab6af11 \
+   //       -Dmaven.test.failure.ignore=true'
+   //    }
+   // }
 
    stage('Results') {
       archiveArtifacts 'payroll/server/target/*.jar'
