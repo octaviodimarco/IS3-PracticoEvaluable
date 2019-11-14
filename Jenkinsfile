@@ -29,11 +29,19 @@ stage('Build') {
 
 
 
-   stage('Push Image') {
-     docker.withRegistry('', 'dockerhub') {
-	   image.push()
+   // stage('Push Image') {
+   //   docker.withRegistry('', 'dockerhub') {
+	//    image.push()
+	//  }
+   // }
+
+   stage('Push Image Heroku') {
+     heroku container:push web --app=salty-brook-03114
+     heroku container:release web --app=salty-brook-03114
+
 	 }
    }
+   
 
       stage('Results') {
       archiveArtifacts 'payroll/server/target/*.jar'
