@@ -45,18 +45,11 @@ stage('Build') {
       }
 	 }
 
-      stage('Integration test'){
-         sh 'npx codeceptjs run --steps --reporter mocha-multi'
-         archiveArtifacts 'payroll/server/src/test/payroll-test/output/results.xml'
-      }
-   
-
-// stage ('heroku') {
-//     withCredentials([[$class: 'StringBinding', credentialsId: 'HEROKU_API_KEY', variable: 'HEROKU_API_KEY']]) {
-//         sh 'heroku:deploy -DskipTests=true -Dmaven.javadoc.skip=true -B -V -D heroku.appName=${salty-brook-03114}'
-//     }
-// }
-
+   stage('Integration test'){
+      sh 'npx codeceptjs init'
+      sh 'npx codeceptjs run --steps --reporter mocha-multi'
+      //archiveArtifacts 'payroll/server/src/test/payroll-test/output/results.xml'
+   }
 
 
       stage('Results') {
